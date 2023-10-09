@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts')
 
 @section('content')
     <form method="post" action="">

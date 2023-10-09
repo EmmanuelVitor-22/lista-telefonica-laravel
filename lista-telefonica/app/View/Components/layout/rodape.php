@@ -21,6 +21,6 @@ class rodape extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layout.rodape');
+        return view('components.layouts.rodape');
     }
 }

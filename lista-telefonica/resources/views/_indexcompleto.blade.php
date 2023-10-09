@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                         <!-- Adicionar contato -->
-                        <a href="" class="btn btn-success btn-sm mb-2">Novo Contato</a>
+                        <a href="{{ route('contatos.create') }}" class="btn btn-success btn-sm mb-2">Novo Contato</a>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -30,19 +30,9 @@
                                     <td>Rua X, endereço tal</td>
                                     <td>99 999999</td>
                                     <td>
-                                        <a href="" class="btn btn-primary btn-sm">
-                                            <i>fa fa-pencil-square</i>
-                                            Editar
-                                        </a>
-                                        <a href="" class="btn btn-info btn-sm">
-                                            <i class="fas fa-info-circle">
-                                                Detalhar
-                                        </a>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal1">
-                                            <i class="fas fa-trash-alt"></i>
-                                            Excluir
-                                        </button>
+                                        <a href="{{ route('contatos.edit', 1) }}" class="btn btn-primary btn-sm">Editar</a>
+                                        <a href="{{ route('contatos.show', 1) }}" class="btn btn-info btn-sm">Detalhes</a>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal1">Excluir</button>
                                     </td>
                                 </tr>
                                 <!-- Adicione mais linhas de dados para outros contatos aqui -->
@@ -56,8 +46,7 @@
     </div>
 
     <!-- Modal de Confirmação de Exclusão (para cada contato) -->
-    <div class="modal fade" id="deleteModal1" tabindex="-1" role="dialog" aria-labelledby="deleteModal1Label"
-         aria-hidden="true">
+    <div class="modal fade" id="deleteModal1" tabindex="-1" role="dialog" aria-labelledby="deleteModal1Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -71,9 +60,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <form action="" method="POST">
+                    <form action="{{ route('contatos.destroy', 1) }}" method="POST">
                         @csrf
-                        {{--                        @method('DELETE')--}}
+                        @method('DELETE')
                         <button type="submit" class="btn btn-danger">Excluir</button>
                     </form>
                 </div>

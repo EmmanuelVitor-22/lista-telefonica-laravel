@@ -1,110 +1,114 @@
-<div class="container mt-5">
-    <div class="jumbotron">
-        <h1 class="display-4"><?= isset($contact) ? "Atualizar Contato: " . $contact->getName() : "Criar Contato" ?></h1>
-    </div>
-    <form method="post" action="/save-contact<?= isset($contact) ? '?id=' . $contact->getId() : ''; ?>">
-        <input type="hidden" name="id" value="<?= isset($contact) ? $contact->getId() : ''; ?>">
 
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Informações de Contato</h2>
-                <div class="form-group">
-                    <label for="name">Nome:</label>
-                    <input type="text" class="form-control" name="nome"
-                           value="<?php echo isset($contact) ? $contact->getName() : ''; ?>" required
-                           placeholder="Digite o Nome">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="email"
-                           value="<?php echo isset($contact) ? $contact->getEmail() : ''; ?>" required
-                           placeholder="Digite o Email">
-                </div>
+{{--    @section('content')--}}
+        <div class="container mt-5">
+            <div class="jumbotron">
+                <h1 class="display-4">Formulário de Contato</h1>
             </div>
+            <form method="post" action="">
+                @csrf <!-- Adicione esta diretiva para proteção contra CSRF -->
 
-            <div class="col-md-6">
-                <h2>Informações de Endereço</h2>
-                <div class="form-group">
-                    <label for="street">Rua:</label>
-                    <input type="text" class="form-control" name="rua"
-                           value="<?php echo isset($contact) ? $contact->getAddress()->getStreet() : ''; ?>" required
-                           placeholder="Digite a Rua">
-                </div>
-                <div class="form-group">
-                    <label for="numberHome">Número da Casa:</label>
-                    <input type="text" class="form-control" name="numero_casa"
-                           value="<?php echo isset($contact) ? $contact->getAddress()->getHomeNumber() : ''; ?>"
-                           required placeholder="Digite o Número da Casa">
-                </div>
-                <div class="form-group">
-                    <label for="complement">Complemento:</label>
-                    <input type="text" class="form-control" name="complemento"
-                           value="<?php echo isset($contact) ? $contact->getAddress()->getComplement() : ''; ?>"
-                           placeholder="Digite o Complemento">
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="zipCode">CEP:</label>
-                        <input type="text" class="form-control" name="cep"
-                               value="<?php echo isset($contact) ? $contact->getAddress()->getZipCode() : ''; ?>"
-                               required placeholder="Digite o CEP">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Informações de Contato</h2>
+                        <div class="form-group">
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control" name="nome"
+                                   value="{{ old('nome') }}" required
+                                   placeholder="Digite o Nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" name="email"
+                                   value="{{ old('email') }}" required
+                                   placeholder="Digite o Email">
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="city">Cidade:</label>
-                        <input type="text" class="form-control" name="cidade"
-                               value="<?php echo isset($contact) ? $contact->getAddress()->getCity() : ''; ?>" required
-                               placeholder="Digite a Cidade">
+
+                    <div class="col-md-6">
+                        <h2>Informações de Endereço</h2>
+                        <div class="form-group">
+                            <label for="rua">Rua:</label>
+                            <input type="text" class="form-control" name="rua"
+                                   value="{{ old('rua') }}" required
+                                   placeholder="Digite a Rua">
+                        </div>
+                        <div class="form-group">
+                            <label for="numero_casa">Número da Casa:</label>
+                            <input type="text" class="form-control" name="numero_casa"
+                                   value="{{ old('numero_casa') }}"
+                                   required placeholder="Digite o Número da Casa">
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Complemento:</label>
+                            <input type="text" class="form-control" name="complemento"
+                                   value="{{ old('complemento') }}"
+                                   placeholder="Digite o Complemento">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="cep">CEP:</label>
+                                <input type="text" class="form-control" name="cep"
+                                       value="{{ old('cep') }}"
+                                       required placeholder="Digite o CEP">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cidade">Cidade:</label>
+                                <input type="text" class="form-control" name="cidade"
+                                       value="{{ old('cidade') }}" required
+                                       placeholder="Digite a Cidade">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado (sigla com 2 letras):</label>
+                            <input type="text" class="form-control" name="estado" maxlength="2"
+                                   value="{{ old('estado') }}" required
+                                   placeholder="Digite o Estado (sigla com 2 letras)">
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="state">Estado (sigla com 2 letras):</label>
-                    <input type="text" class="form-control" name="estado" maxlength="2"
-                           value="<?php echo isset($contact) ? $contact->getAddress()->getState() : ''; ?>" required
-                           placeholder="Digite o Estado (sigla com 2 letras)">
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Telefone 1</h2>
-                <div class="form-group">
-                    <label for="areaCode1">Código de Área:</label>
-                    <input type="text" class="form-control" id="areaCode1" name="areaCode1"
-                           value="<?php echo isset($contact) ? $contact->getPhones()[0]->getAreaCode() : ''; ?>"
-                           placeholder="Digite o Código de Área">
-                </div>
-                <div class="form-group">
-                    <label for="phoneNumber1">Número de Telefone:</label>
-                    <input type="text" class="form-control" id="phoneNumber1" name="phoneNumber1"
-                           value="<?php echo isset($contact) ? $contact->getPhones()[0]->getNumber() : ''; ?>"
-                           placeholder="Digite o Número de Telefone">
-                </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Telefone</h2>
+                        <div class="form-group col-md-6">
+                            <label for="codigoArea1">Código de Área 1:</label>
+                            <input type="text" class="form-control" id="codigoArea1" name="codigoArea1"
+                                   value="{{ old('codigoArea1') }}"
+                                   placeholder="Digite o Código de Área">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="codigoArea2">Código de Área 2:</label>
+                            <input type="text" class="form-control" id="codigoArea2" name="codigoArea2"
+                                   value="{{ old('codigoArea2') }}"
+                                   placeholder="Digite o Código de Área">
+                        </div>
 
-            <div class="col-md-6">
-                <h2>Telefone 2</h2>
-                <div class="form-group">
-                    <label for="areaCode2">Código de Área:</label>
-                    <input type="text" class="form-control" id="areaCode2" name="areaCode2"
-                           value="<?php echo isset($contact) ? $contact->getPhones()[1]->getAreaCode() : ''; ?>"
-                           placeholder="Digite o Código de Área">
-                </div>
-                <div class="form-group">
-                    <label for="phoneNumber2">Número de Telefone:</label>
-                    <input type="text" class="form-control" id="phoneNumber2" name="phoneNumber2"
-                           value="<?php echo isset($contact) ? $contact->getPhones()[1]->getNumber() : ''; ?>"
-                           placeholder="Digite o Número de Telefone">
-                </div>
-            </div>
-        </div>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">
-                    <?php echo isset($_GET['id']) ? 'Atualizar' : 'Registrar'; ?>
-                </button>
-            </div>
+                    <div class="col-md-6">
+                        <h2>Telefone</h2>
+                        <div class="form-group col-md-6 ">
+                            <label for="numeroTelefone2">Número de Telefone 1:</label>
+                            <input type="text" class="form-control" id="numeroTelefone2" name="numeroTelefone2"
+                                   value="{{ old('numeroTelefone2') }}"
+                                   placeholder="Digite o Número de Telefone">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="numeroTelefone1">Número de Telefone 2:</label>
+                            <input type="text" class="form-control" id="numeroTelefone1" name="numeroTelefone1"
+                                   value="{{ old('numeroTelefone1') }}"
+                                   placeholder="Digite o Número de Telefone">
+                        </div>
+                        </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
+{{--    @endsection--}}
+

@@ -21,6 +21,6 @@ class cabecalho extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layout.cabecalho');
+        return view('components.layouts.cabecalho');
     }
 }
