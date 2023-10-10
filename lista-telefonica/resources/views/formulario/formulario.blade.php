@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label for="nome">Nome:</label>
                             <input type="text" class="form-control" name="nome"
-                                   value="{{ old('nome') }}" required
+                                   value="{{  old('nome') }}" required
                                    placeholder="Digite o Nome">
                         </div>
                         <div class="form-group">
