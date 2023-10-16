@@ -25,10 +25,18 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Emma</td>
-                                    <td>emma@gmail.com</td>
-                                    <td>Rua X, endereço tal</td>
-                                    <td>99 999999</td>
+{{--                                    <td>Emma</td>--}}
+{{--                                    <td>emma@gmail.com</td>--}}
+{{--                                    <td>Rua X, endereço tal</td>--}}
+{{--                                    <td>99 999999</td>--}}
+                                    @foreach($contatos as $contato)
+                                        <li>
+                                            @foreach ($contato->telefones as $telefone)
+                                                <td>{{ $telefone->numero }}</td>
+                                    @endforeach
+
+                                        </li>
+                                    @endforeach
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm">
                                             <i>fa fa-pencil-square</i>

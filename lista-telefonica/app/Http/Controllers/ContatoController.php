@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contato;
+use App\Models\Telefone;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
@@ -34,10 +35,16 @@ class ContatoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Contato $contato)
+    public function show()
     {
-        dd($contato);
+
+
+        $contatos = Contato::with('telefones')->get();
+
+        return view('index', compact('contatos'));
+
     }
+
 
     /**
      * Show the form for editing the specified resource.

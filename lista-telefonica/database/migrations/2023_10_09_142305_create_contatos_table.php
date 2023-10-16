@@ -11,14 +11,14 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('contatos', function (Blueprint $table) {
-            $table->id('id_contato');
+            $table->id();
             $table->string('nome', 100);
             $table->string('email', 100);
             $table->unsignedBigInteger('id_endereco');
             $table->timestamps();
 
             $table->foreign('id_endereco')
-                ->references('id_endereco')
+                ->references('id')
                 ->on('enderecos')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
