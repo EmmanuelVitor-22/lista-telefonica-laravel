@@ -38,5 +38,29 @@ class Contato extends Model
         return $this->hasMany(Telefone::class, 'id_contato','id');
     }
 
+    public function telefoneFormatado()
+    {
+        $telefones = $this->telefones;
+        if ($telefones->isEmpty()) {
+            return 'Nenhum telefone disponível'; // Trate o caso em que não há telefones associados.
+        }
+        $telefonesFormatados = $telefones->map(function ($telefone) {
+            return "($telefone->codigo_area) . $telefone->numero"  ;
+        });
+//        dd($telefonesFormatados);
+        return $telefonesFormatados; // Retorna os números de telefone formatados como uma string separada por vírgulas.
+    }
+    public function enderecoFormatado()
+    {
+        $endereco = $this->endereco;
+        if ($endereco->isEmpty()) {
+            return 'Nenhum endereço cadastrado'; // Trate o caso em que não há telefones associados.
+        }
+        $enderecoFormatado = $endereco->map(function ($telefone) {
+            return 'teste' ;
+        });
+//        dd($telefonesFormatados);
+        return $enderecoFormatado;
+    }
 
 }

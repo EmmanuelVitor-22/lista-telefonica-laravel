@@ -30,12 +30,18 @@
 {{--                                    <td>Rua X, endereço tal</td>--}}
 {{--                                    <td>99 999999</td>--}}
                                     @foreach($contatos as $contato)
-                                        <li>
-                                            @foreach ($contato->telefones as $telefone)
-                                                <td>{{ $telefone->numero }}</td>
-                                    @endforeach
 
-                                        </li>
+                                        <td>{{$contato->nome}}</td>
+                                        <td>{{$contato->email}}</td>
+                                        <td>{{$contato->enderecoFormatado}}</td>
+
+                                        <td>
+                                            @foreach ($contato->telefones as $telefone)
+                                               ({{ $telefone->codigo_area}}) {{ $telefone->numero}}  <br>
+                                            @endforeach
+                                        </td>
+
+
                                     @endforeach
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm">
@@ -43,7 +49,7 @@
                                             Editar
                                         </a>
                                         <a href="" class="btn btn-info btn-sm">
-                                            <i class="fas fa-info-circle">
+                                            <i class="fas fa-info-circle"></i>
                                                 Detalhar
                                         </a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"

@@ -39,7 +39,7 @@ class ContatoController extends Controller
     {
 
 
-        $contatos = Contato::with('telefones')->get();
+        $contatos = Contato::select('*')->with('telefones')->get();
 
         return view('index', compact('contatos'));
 
