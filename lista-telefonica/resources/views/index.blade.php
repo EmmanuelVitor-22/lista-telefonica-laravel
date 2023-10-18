@@ -30,10 +30,10 @@
 {{--                                    <td>Rua X, endereço tal</td>--}}
 {{--                                    <td>99 999999</td>--}}
                                     @foreach($contatos as $contato)
-
+{{--                                        {{dd($contato->getContato())}}--}}
                                         <td>{{$contato->nome}}</td>
                                         <td>{{$contato->email}}</td>
-                                        <td>{{$contato->enderecoFormatado}}</td>
+                                        <td>{{$contato->getContato()}}</td>
 
                                         <td>
                                             @foreach ($contato->telefones as $telefone)

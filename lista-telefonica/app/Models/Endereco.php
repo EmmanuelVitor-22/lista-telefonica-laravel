@@ -19,7 +19,7 @@ class Endereco extends Model
         'estado' ,
     ];
 
-    public function ContatoDoEndereco(): BelongsTo
+    public function contato(): BelongsTo
     {
         return $this->belongsTo(Contato::class);
     }

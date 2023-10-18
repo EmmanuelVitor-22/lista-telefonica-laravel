@@ -39,9 +39,12 @@ class ContatoController extends Controller
     {
 
 
-        $contatos = Contato::select('*')->with('telefones')->get();
-
-        return view('index', compact('contatos'));
+        $contatos = Contato::select('*')->with(['telefones'])->get();
+        $endereco = Contato::all();
+//        $enderecos = Contato::select('*')->with('enderecos')->get();
+//
+//        dd($contatos);
+        return view('index', compact(['contatos']));
 
     }
 

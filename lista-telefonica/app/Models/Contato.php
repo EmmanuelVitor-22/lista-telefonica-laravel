@@ -8,6 +8,7 @@ use App\Models\Endereco;
 use App\Models\Telefone;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\DB;
 
 class Contato extends Model
 {
@@ -20,6 +21,20 @@ class Contato extends Model
         'email',
         'id_endereco',
     ];
+
+    public function getContato(): \Illuminate\Support\Collection
+    {
+        $query =  DB::table('contatos')
+            ->join('enderecos', 'contatos.id_endereco', '=','enderecos.id')
+            ->join('telefones', 'telefones.id_contato', '=','contatos.id')
+            ->select('contatos.id', 'contatos.nome','contatos.email',
+                     'telefones.id', 'telefones.numero as numero_tel',
+                     'enderecos.id', 'enderecos.logradouro','enderecos.numero',
+                     'enderecos.complemento','enderecos.cep','enderecos.cidade','enderecos.estado')
+            ->get();
+
+        return $query->id;
+    }
 
     /**
      * @return HasOne
@@ -42,25 +57,27 @@ class Contato extends Model
     {
         $telefones = $this->telefones;
         if ($telefones->isEmpty()) {
-            return 'Nenhum telefone disponível'; // Trate o caso em que não há telefones associados.
+            return 'Nenhum telefone disponível';
         }
         $telefonesFormatados = $telefones->map(function ($telefone) {
             return "($telefone->codigo_area) . $telefone->numero"  ;
         });
-//        dd($telefonesFormatados);
-        return $telefonesFormatados; // Retorna os números de telefone formatados como uma string separada por vírgulas.
+        return $telefonesFormatados;
     }
-    public function enderecoFormatado()
-    {
-        $endereco = $this->endereco;
-        if ($endereco->isEmpty()) {
-            return 'Nenhum endereço cadastrado'; // Trate o caso em que não há telefones associados.
-        }
-        $enderecoFormatado = $endereco->map(function ($telefone) {
-            return 'teste' ;
-        });
-//        dd($telefonesFormatados);
-        return $enderecoFormatado;
-    }
+//    public function enderecoFormatado()
+//    {
+//        $endereco = $this->endereco;
+////        dd($this->endereco);
+//        if ($endereco->isEmpty()) {
+//            return 'Nenhum endereço cadastrado'; // Trate o caso em que não há telefones associados.
+//        }
+//        $enderecoFormatado = $endereco->map(function ($telefone) {
+//            return 'teste' ;
+//        });
+//        dd($enderecoFormatado);
+//        return $enderecoFormatado;
+//    }
+
+
 
 }
