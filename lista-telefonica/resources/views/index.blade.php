@@ -24,23 +24,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-{{--                                    <td>Emma</td>--}}
-{{--                                    <td>emma@gmail.com</td>--}}
-{{--                                    <td>Rua X, endereço tal</td>--}}
-{{--                                    <td>99 999999</td>--}}
-                                    @foreach($contatos as $contato)
-{{--                                        {{dd($contato->getContato())}}--}}
+                                @foreach($contatos as $contato)
+
+                                    <tr>
                                         <td>{{$contato->nome}}</td>
                                         <td>{{$contato->email}}</td>
-                                        <td>{{$contato->getContato()}}</td>
-
+                                        <td>{{ $contato->endereco->logradouro }},
+                                            {{ $contato->endereco->numero }},
+                                            {{ $contato->endereco->cidade }},
+                                            {{ $contato->endereco->estado }}</td>
                                         <td>
                                             @foreach ($contato->telefones as $telefone)
-                                               ({{ $telefone->codigo_area}}) {{ $telefone->numero}}  <br>
+                                                ({{ $telefone->codigo_area}}) {{ $telefone->numero}}  <br>
                                             @endforeach
                                         </td>
-
 
                                     @endforeach
                                     <td>
@@ -50,7 +47,7 @@
                                         </a>
                                         <a href="" class="btn btn-info btn-sm">
                                             <i class="fas fa-info-circle"></i>
-                                                Detalhar
+                                            Detalhar
                                         </a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#deleteModal1">

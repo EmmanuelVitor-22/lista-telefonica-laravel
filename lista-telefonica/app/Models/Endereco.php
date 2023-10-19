@@ -19,8 +19,9 @@ class Endereco extends Model
         'estado' ,
     ];
 
-    public function contato(): BelongsTo
+    public function contatos()
     {
-        return $this->belongsTo(Contato::class);
+        return $this->hasMany(Contato::class, 'id_endereco');
     }
+
 }

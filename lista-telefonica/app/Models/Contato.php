@@ -36,13 +36,9 @@ class Contato extends Model
         return $query->id;
     }
 
-    /**
-     * @return HasOne
-     */
-    public function endereco(): HasOne
+    public function endereco()
     {
-
-        return $this->hasOne(Endereco::class, 'id_endereco', 'id');
+        return $this->belongsTo(Endereco::class, 'id_endereco');
     }
 
     /**
