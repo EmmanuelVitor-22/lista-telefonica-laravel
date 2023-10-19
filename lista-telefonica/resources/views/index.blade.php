@@ -33,6 +33,7 @@
                                             {{ $contato->endereco->numero }},
                                             {{ $contato->endereco->cidade }},
                                             {{ $contato->endereco->estado }}</td>
+
                                         <td>
                                             @foreach ($contato->telefones as $telefone)
                                                 ({{ $telefone->codigo_area}}) {{ $telefone->numero}}  <br>
