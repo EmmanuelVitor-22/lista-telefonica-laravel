@@ -1,7 +1,7 @@
 @extends('layouts')
 
-@section('content')
+@yield('content')
     <form method="post" action="">
         {{csrf_field()}}
     </form>
-@endsection
+

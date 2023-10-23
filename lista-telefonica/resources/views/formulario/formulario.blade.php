@@ -1,5 +1,5 @@
-
-{{--    @section('content')--}}
+@extends('layouts.app')
+@section('form')
         <div class="container mt-5">
             <div class="jumbotron">
                 <h1 class="display-4">Formulário de Contato</h1>
@@ -110,5 +110,5 @@
                 </div>
             </form>
         </div>
-{{--    @endsection--}}
+@stop
 

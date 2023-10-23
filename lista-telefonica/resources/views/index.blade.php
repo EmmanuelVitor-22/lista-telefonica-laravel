@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
                         <!-- Adicionar contato -->
-                        <a href="" class="btn btn-success btn-sm mb-2">Novo Contato</a>
+                        <a href="{{route('novo.create')}}" class="btn btn-success btn-sm mb-2">Novo Contato</a>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -29,33 +29,33 @@
                                     <tr>
                                         <td>{{$contato->nome}}</td>
                                         <td>{{$contato->email}}</td>
-                                        <td>{{ $contato->endereco->logradouro }},
-                                            {{ $contato->endereco->numero }},
-                                            {{ $contato->endereco->cidade }},
-                                            {{ $contato->endereco->estado }}</td>
+                                        <td>{{ $contato->enderecoFormatado() }}
 
-                                        <td>
-                                            @foreach ($contato->telefones as $telefone)
-                                                ({{ $telefone->codigo_area}}) {{ $telefone->numero}}  <br>
-                                            @endforeach
                                         </td>
 
+                                        <td style="width: 16%;">
+                                            @foreach ($contato->telefones as $telefone)
+                                            {{$telefone->telefoneFormatado()}}
+
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-primary btn-sm">
+                                                <i>fa fa-pencil-square</i>
+                                                Editar
+                                            </a>
+                                            <a href="" class="btn btn-info btn-sm">
+                                                <i class="fas fa-info-circle"></i>
+                                                Detalhar
+                                            </a>
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    data-target="#deleteModal1">
+                                                <i class="fas fa-trash-alt"></i>
+                                                Excluir
+                                            </button>
+                                        </td>
                                     @endforeach
-                                    <td>
-                                        <a href="" class="btn btn-primary btn-sm">
-                                            <i>fa fa-pencil-square</i>
-                                            Editar
-                                        </a>
-                                        <a href="" class="btn btn-info btn-sm">
-                                            <i class="fas fa-info-circle"></i>
-                                            Detalhar
-                                        </a>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal1">
-                                            <i class="fas fa-trash-alt"></i>
-                                            Excluir
-                                        </button>
-                                    </td>
+
                                 </tr>
                                 <!-- Adicione mais linhas de dados para outros contatos aqui -->
                                 </tbody>

@@ -17,10 +17,9 @@ class Telefone extends Model
 
     protected $fillable = [
         'codigo_area',
-        'numero',
+        'numero_tel',
         'id_contato',
     ];
-
 
 
     /**
@@ -28,17 +27,16 @@ class Telefone extends Model
      */
     public function contato(): BelongsTo
     {
-        return $this->belongsTo(Contato::class, 'id_contato','id');
+        return $this->belongsTo(Contato::class, 'id_contato', 'id');
     }
 
     public function telefoneFormatado()
     {
-        $telefones = $this->telefones;
+        $telefones = $this->contato->telefones;
 
-        $telefonesFormatados = $telefones->map(function ($telefone) {
-            return "($telefone->codigo_area) . $telefone->numero"  ;
-        });
-//        dd($telefonesFormatados);
-        return $telefonesFormatados; // Retorna os números de telefone formatados como uma string separada por vírgulas.
+        foreach ($telefones as $telefone) {
+            return "(" . $telefone->codigo_area . ") " . $telefone->numero_tel;
+
+        }
     }
 }

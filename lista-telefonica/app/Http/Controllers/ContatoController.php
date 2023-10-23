@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contato;
 use App\Models\Telefone;
+use App\Models\Endereco;
+
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
@@ -13,7 +15,8 @@ class ContatoController extends Controller
      */
     public function index()
     {
-
+        $contatos = Contato::with(['endereco', 'telefones'])->get();
+        return view('index', compact('contatos'));
     }
 
     /**
@@ -21,7 +24,7 @@ class ContatoController extends Controller
      */
     public function create()
     {
-        //
+       return view('formulario.create');
     }
 
     /**
@@ -29,7 +32,11 @@ class ContatoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados = $request->all();
+        $contato = new Contato();
+
+        $contato->
+        dd($contato);
     }
 
     /**
@@ -37,12 +44,6 @@ class ContatoController extends Controller
      */
     public function show()
     {
-
-        $contatos = Contato::with(['endereco', 'telefones'])->get();
-
-        return view('index', compact('contatos'));
-
-
 
     }
 

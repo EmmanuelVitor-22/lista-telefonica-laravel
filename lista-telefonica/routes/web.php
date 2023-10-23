@@ -14,4 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ContatoController::class,'show']);
+Route::get('/', [ContatoController::class,'index'])->name('home');
+Route::get('novo-contato', [ContatoController::class,'create'])->name('novo.create');
+Route::post('novo-contato', [ContatoController::class,'store'])->name('novo.store');
+Route::put('atualizar-contato', [ContatoController::class,'edit'])->name('atualizar.edit');
