@@ -1,112 +1,114 @@
 @extends('layouts.app')
-<div class="container mt-5">
-    <div class="jumbotron">
-        <h1 class="display-4">Cadastro de Contato</h1>
+@section('content')
+    <div class="container mt-5">
+        <a href="{{route('home')}}" class="btn btn-success btn-sm mb-2"><i class="fa-solid fa-house"></i></a>
+        <div class="jumbotron">
+            <h1 class="display-4">Cadastrar Contato</h1>
+        </div>
+        <form method="POST" action="{{ route('novo.create') }}" class="container">
+            @csrf
+            <div class="row d-flex justify-content-between">
+                <div class="col-md-5">
+                    <h2>Informações de Contato</h2>
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control" name="nome" required placeholder=" Nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" name="email" placeholder="Email">
+                    </div>
+                    <div class="d-flex">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="codigoArea1">DDD</label>
+                                <input type="tel" class="form-control"
+                                       name="codigoArea1"
+                                       placeholder="(99)"
+                                       maxlength="2"
+                                       required>
+                            </div>
+                            <div class="col-md-7 mb-3">
+                                <label for="numeroTelefone1">Numero</label>
+                                <input type="tel" class="form-control"
+                                       name="numeroTelefone1"
+                                       placeholder="99999-9999"
+                                       maxlength="10"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-row ml-2">
+                            <div class="col-md-4  mb-3">
+                                <label for="codigoArea2">DDD</label>
+                                <input type="tel" class="form-control"
+                                       name="codigoArea2"
+                                       placeholder="(99)"
+                                       maxlength="2">
+                            </div>
+                            <div class="col-md-7 mb-3 ">
+                                <label for="numeroTelefone2">Numero</label>
+                                <input type="text" class="form-control"
+                                       name="numeroTelefone2"
+                                       placeholder="99999-9999"
+                                       maxlength="10"
+                                >
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 ml-4">
+                    <h2>Informações de Endereço</h2>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="logradouro">Logradouro</label>
+                            <input type="text" class="form-control"
+                                   name="logradouro"
+                                   required
+                                   placeholder="Logradouro">
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="numero_casa">Nº </label>
+                            <input type="text" class="form-control"
+                                   name="numero_casa" maxlength="5"
+                                   placeholder="Nº"
+                                   required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="bairro">Bairro:</label>
+                            <input type="text" class="form-control" name="bairro"
+                                   placeholder="Bairro">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="complemento">Complemento:</label>
+                        <input type="text" class="form-control" name="complemento" placeholder="Complemento">
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="cidade">Cidade:</label>
+                            <input type="text" class="form-control" name="cidade" required placeholder="Cidade">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="estado">Estado:</label>
+                            <input type="text" class="form-control" name="estado" maxlength="2" required
+                                   placeholder="Estado">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cep">CEP:</label>
+                            <input type="text" class="form-control" name="cep"  placeholder="CEP" maxlength="9" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
+                </div>
+            </div>
+        </form>
     </div>
-    <form method="post" action="{{route('novo.create')}}">
-        @csrf <!-- Adicione esta diretiva para proteção contra CSRF -->
+    <script src="https://kit.fontawesome.com/a60a3dd619.js" crossorigin="anonymous"></script>
 
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Informações de Contato</h2>
-                <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" class="form-control" name="nome"
-                           value="{{  old('nome') }}" required
-                           placeholder="Digite o Nome">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="email"
-                           value="{{ old('email') }}" required
-                           placeholder="Digite o Email">
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <h2>Informações de Endereço</h2>
-                <div class="form-group">
-                    <label for="rua">Rua:</label>
-                    <input type="text" class="form-control" name="rua"
-                           value="{{ old('rua') }}" required
-                           placeholder="Digite a Rua">
-                </div>
-                <div class="form-group">
-                    <label for="numero_casa">Número da Casa:</label>
-                    <input type="text" class="form-control" name="numero_casa"
-                           value="{{ old('numero_casa') }}"
-                           required placeholder="Digite o Número da Casa">
-                </div>
-                <div class="form-group">
-                    <label for="complemento">Complemento:</label>
-                    <input type="text" class="form-control" name="complemento"
-                           value="{{ old('complemento') }}"
-                           placeholder="Digite o Complemento">
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="cep">CEP:</label>
-                        <input type="text" class="form-control" name="cep"
-                               value="{{ old('cep') }}"
-                               required placeholder="Digite o CEP">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="cidade">Cidade:</label>
-                        <input type="text" class="form-control" name="cidade"
-                               value="{{ old('cidade') }}" required
-                               placeholder="Digite a Cidade">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="estado">Estado (sigla com 2 letras):</label>
-                    <input type="text" class="form-control" name="estado" maxlength="2"
-                           value="{{ old('estado') }}" required
-                           placeholder="Digite o Estado (sigla com 2 letras)">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Telefone</h2>
-                <div class="form-group col-md-6">
-                    <label for="codigoArea1">Código de Área 1:</label>
-                    <input type="text" class="form-control" id="codigoArea1" name="codigoArea1"
-                           value="{{ old('codigoArea1') }}"
-                           placeholder="Digite o Código de Área">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="codigoArea2">Código de Área 2:</label>
-                    <input type="text" class="form-control" id="codigoArea2" name="codigoArea2"
-                           value="{{ old('codigoArea2') }}"
-                           placeholder="Digite o Código de Área">
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-                <h2>Telefone</h2>
-                <div class="form-group col-md-6 ">
-                    <label for="numeroTelefone2">Número de Telefone 1:</label>
-                    <input type="text" class="form-control" id="numeroTelefone2" name="numeroTelefone2"
-                           value="{{ old('numeroTelefone2') }}"
-                           placeholder="Digite o Número de Telefone">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="numeroTelefone1">Número de Telefone 2:</label>
-                    <input type="text" class="form-control" id="numeroTelefone1" name="numeroTelefone1"
-                           value="{{ old('numeroTelefone1') }}"
-                           placeholder="Digite o Número de Telefone">
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
-            </div>
-        </div>
-    </form>
-</div>
-
+@endsection

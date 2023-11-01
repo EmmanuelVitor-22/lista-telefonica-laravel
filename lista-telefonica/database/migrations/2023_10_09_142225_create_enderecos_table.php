@@ -13,18 +13,14 @@ return new class extends Migration {
         Schema::create('enderecos', function (Blueprint $table) {
             $table->id();
             $table->string('logradouro', 100);
-            $table->string('numero', 10);
+            $table->string('numero_casa', 10);
             $table->string('complemento', 256)->nullable();
             $table->string('cep', 10);
             $table->string('cidade', 100);
+            $table->string('bairro', 100);
             $table->string('estado', 50);
             $table->timestamps();
         });
-
-////         Agora, vamos renomear a coluna de chave primária para "id_endereco"
-//        Schema::table('enderecos', function (Blueprint $table) {
-//            $table->renameColumn('id', 'id_endereco');
-//        });
 
     }
 

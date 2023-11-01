@@ -17,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ContatoController::class,'index'])->name('home');
 Route::get('novo-contato', [ContatoController::class,'create'])->name('novo.create');
 Route::post('novo-contato', [ContatoController::class,'store'])->name('novo.store');
-Route::put('atualizar-contato', [ContatoController::class,'edit'])->name('atualizar.edit');
+
+Route::get('atualizar-contato/{id}', [ContatoController::class,'edit'])->name('atualizar.edit');
+Route::put('atualizar-contato/{id}', [ContatoController::class,'update'])->name('atualizar.update');
+
+Route::get('deletar-contato/{id}', [ContatoController::class,'destroy'])->name('deletar.destroy');
+Route::get('deletar-todos-contatos', [ContatoController::class,'destroyAll'])->name('deletar.destroyAll');

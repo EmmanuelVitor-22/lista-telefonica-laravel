@@ -21,7 +21,7 @@ class EnderecoFactory extends Factory
     {
         return [
             'logradouro' => $this->faker->streetAddress,
-            'numero' => $this->faker->buildingNumber,
+            'numero_casa' => $this->faker->buildingNumber,
             'complemento' => $this->faker->optional()->address,
             'cep' => $this->faker->postcode,
             'cidade' => $this->faker->city,

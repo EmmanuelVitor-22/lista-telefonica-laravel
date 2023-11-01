@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('telefones', function (Blueprint $table) {
             $table->id();
             $table->string('codigo_area', 4);
-            $table->string('numero', 10);
+            $table->string('numero_tel', 10);
             $table->unsignedBigInteger('id_contato');
             $table->timestamps();
 
@@ -23,9 +23,7 @@ return new class extends Migration {
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
-//        Schema::table('telefones', function (Blueprint $table) {
-//            $table->renameColumn('id', 'id_telefone');
-//        });
+
 
     }
 

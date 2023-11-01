@@ -24,9 +24,6 @@ return new class extends Migration {
                 ->onDelete('cascade');
         });
 
-//        Schema::table('contatos', function (Blueprint $table) {
-//            $table->renameColumn('id', 'id_contato');
-//        });
     }
 
 

@@ -23,7 +23,7 @@ class TelefoneFactory extends Factory
     {
         return [
             'codigo_area' => $this->faker->numerify('####'),
-            'numero' => $this->faker->numerify('##########'),
+            'numero_tel' => $this->faker->numerify('##########'),
             'id_contato' => Contato::factory()
         ];
     }
